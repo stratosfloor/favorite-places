@@ -1,32 +1,16 @@
-import 'package:favorite_places/models/place.dart';
+import 'package:favorite_places/providers/user_places.dart';
 import 'package:favorite_places/screens/new_place.dart';
 import 'package:favorite_places/widgets/places_list.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class PlacesScreen extends StatelessWidget {
+class PlacesScreen extends ConsumerWidget {
   const PlacesScreen({super.key});
 
-  // final List<Place> _places = [];
-
-  // void _addPlace() async {
-  //   final newPlace = await Navigator.of(context).push<Place>(
-  //     MaterialPageRoute(
-  //       builder: (ctx) => const NewPlaceScreen(),
-  //     ),
-  //   );
-  // }
-  //   if (newPlace == null) {
-  //     return;
-  //   }
-
-  //   setState(() {
-  //     _places.add(newPlace);
-  //   });
-  //   // print(newPlace.title.toString());
-  // }
-
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final userPlaces = ref.watch(userPlacesProvider);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Your places'),
@@ -43,7 +27,9 @@ class PlacesScreen extends StatelessWidget {
           )
         ],
       ),
-      body: PlacesList(places: []),
+      body: PlacesList(
+        places: userPlaces,
+      ),
     );
   }
 }
