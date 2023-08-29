@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:location/location.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -45,8 +47,16 @@ class _LocationInputState extends State<LocationInput> {
 
     locationData = await location.getLocation();
 
+    final apiKey = dotenv.env['GOOGLE_API'];
+    final lat = locationData.latitude;
+    final lng = locationData.longitude;
     final url = Uri.parse(
-        'https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key=${dotenv.env['GOOGLE_API']}');
+        'https://maps.googleapis.com/maps/api/geocode/json?latlng=$lat,$lng&key=$apiKey');
+
+    final response = await http.get(url);
+    final resData = json.decode(response.body);
+    final adress = resData['results'][0]['formatted_address'];
+    print(adress);
 
     setState(() {
       _isGettingLocation = false;
