@@ -43,6 +43,7 @@ dependencies:
       url: git@github.com:asaarnak/flutterlocation.git
       ref: patch-1
       path: packages/location
+  flutter_dotenv: ^5.1.0
 
 dev_dependencies:
   flutter_test:
