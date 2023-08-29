@@ -1,44 +1,49 @@
 import 'package:favorite_places/models/place.dart';
+import 'package:favorite_places/screens/new_place.dart';
+import 'package:favorite_places/widgets/places_list.dart';
 import 'package:flutter/material.dart';
 
-class PlacesScreen extends StatefulWidget {
+class PlacesScreen extends StatelessWidget {
   const PlacesScreen({super.key});
 
-  @override
-  State<PlacesScreen> createState() => _PlacesScreenState();
-}
+  // final List<Place> _places = [];
 
-class _PlacesScreenState extends State<PlacesScreen> {
-  final List<Place> _places = [];
+  // void _addPlace() async {
+  //   final newPlace = await Navigator.of(context).push<Place>(
+  //     MaterialPageRoute(
+  //       builder: (ctx) => const NewPlaceScreen(),
+  //     ),
+  //   );
+  // }
+  //   if (newPlace == null) {
+  //     return;
+  //   }
 
-
-  void _addPlace () {
-    Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => ))
-  }
+  //   setState(() {
+  //     _places.add(newPlace);
+  //   });
+  //   // print(newPlace.title.toString());
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Your places'),
-          actions: [
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.add),
-            )
-          ],
-        ),
-        body: _places.isEmpty
-            ? const Center(child: Text('No placed added yet.'))
-            : ListView.builder(
-                itemCount: _places.length,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    // leading: ,
-                    // trailing: ,
-                    title: Text(_places[index].title),
-                  );
-                },
-              ));
+      appBar: AppBar(
+        title: const Text('Your places'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (ctx) => const NewPlaceScreen(),
+                ),
+              );
+            },
+            icon: const Icon(Icons.add),
+          )
+        ],
+      ),
+      body: PlacesList(places: []),
+    );
   }
 }
