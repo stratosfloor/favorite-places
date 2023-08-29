@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:favorite_places/models/place.dart';
+import 'package:favorite_places/services/google_maps_api.dart';
 import 'package:flutter/material.dart';
 import 'package:location/location.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -81,12 +82,6 @@ class _LocationInputState extends State<LocationInput> {
     widget.onSelectLocation(_pickedLocation!);
   }
 
-  String get locationImage {
-    final lat = _pickedLocation!.latitude;
-    final lng = _pickedLocation!.longitude;
-    return 'https://maps.googleapis.com/maps/api/staticmap?center=$lat,$lng&zoom=17&size=600x300&maptype=roadmap&markers=color:red%7Clabel:A%7C$lat,$lng&key=$apiKey';
-  }
-
   @override
   Widget build(BuildContext context) {
     Widget previewContent = Text(
@@ -99,7 +94,7 @@ class _LocationInputState extends State<LocationInput> {
 
     if (_pickedLocation != null) {
       previewContent = Image.network(
-        locationImage,
+        getLocationImage(_pickedLocation!.latitude, _pickedLocation!.longitude),
         fit: BoxFit.cover,
         width: double.infinity,
         height: double.infinity,
