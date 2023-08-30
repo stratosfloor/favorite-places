@@ -1,8 +1,20 @@
 # favorite_places
 
-A new Flutter project.
+A Flutter project for favorite places.
 
-## Getting Started
+##
+
+The user can:
+
+- set title
+- take an picture with camera on device
+- set location for place, either with using location on device or by markning on map
+
+The data i stored locally on the phone with Sqflite.
+
+##### You will need a working google api key named <GOOGLE_API> in .env and built with flag --dart-define GOOGLE_API for this to work
+
+##### Getting Started
 
 This project is a starting point for a Flutter application.
 
