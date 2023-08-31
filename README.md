@@ -1,6 +1,6 @@
-# favorite_places
+## favorite_places
 
-A Flutter project for favorite places.
+A Flutter project built for mobile for favorite places.
 
 ##
 
@@ -12,17 +12,18 @@ The user can:
 
 The data i stored locally on the phone with Sqflite.
 
-##### You will need a working google api key named <GOOGLE_API> in .env and built with flag --dart-define GOOGLE_API for this to work
+#### Google maps
 
-##### Getting Started
+###### For using location and map you will need a Google Maps Api Key.
 
-This project is a starting point for a Flutter application.
+- Create .env file in root folder and add "GOOGLE_API=<YOUR KEY>"
 
-A few resources to get you started if this is your first Flutter project:
+###### and one of the following:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- If you start project from command line `flutter run --dart-define GOOGLE_API=<YOUR KEY>`
+  **or**
+- Add to configurations in launch.json
+  `"toolArgs": [
+	"--dart-define",
+	"GOOGLE_API=<YOUR KEY>"
+]`
